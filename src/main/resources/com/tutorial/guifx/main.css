@@ -1,0 +1,45 @@
+.root {
+    -fx-font-family: "Fira Code";
+}
+
+.header_button {
+  -fx-background-color: none;
+  -fx-color: white;
+  -fx-border-color: #4CAF50; /* Green */
+  -fx-color: #4CAF50;
+  -fx-border-radius: 15px;
+  -fx-padding: 10px;
+}
+
+.header_button:hover{
+    -fx-background-color: #4CAF50;
+    -fx-border-radius: 15px;
+}
+
+.side_panel_button {
+    -fx-background-color: #4CAF50;
+    -fx-border-radius: 15px;
+}
+
+.side_panel_button:hover {
+    -fx-background-color: #FFFFFF;
+  
+}
+
+.rounded_button_edit {
+    -fx-background-color: #2596be;
+    -fx-height: 40px;
+    -fx-width: 40px;
+}
+
+
+.rounded_button_delete {
+    -fx-background-color: #CF2D05;
+    -fx-height: 40px;
+    -fx-width: 40px;
+}
+
+.logo-layout {
+    -fx-background-color: #EBC95E;
+    -fx-background-radius: 0 0 50 50;
+}

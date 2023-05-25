@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="913.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tutorial.guifx.MainController">
+    <center>
+        <VBox prefHeight="400.0" prefWidth="506.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="400.0" spacing="30.0">
+                    <children>
+                        <Button mnemonicParsing="false" styleClass="header_button" text="ADD TASK" textFill="#151515">
+                            <font>
+                                <Font size="8.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" styleClass="header_button" text="SET REMINDER" />
+                        <Button mnemonicParsing="false" styleClass="header_button" text="SETTINGS" />
+                    </children>
+                    <opaqueInsets>
+                        <Insets left="10.0" right="10.0" />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="50.0" right="50.0" />
+                    </padding>
+                </HBox>
+            <ScrollPane>
+               <content>
+                  <VBox fx:id="todoList" prefHeight="409.0" prefWidth="743.0" />
+               </content>
+            </ScrollPane>
+            </children>
+        </VBox>
+    </center>
+    <left>
+        <VBox alignment="TOP_CENTER" prefHeight="462.0" prefWidth="170.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="logo-layout">
+               <children>
+                  <ImageView fx:id="mainLogo" fitHeight="167.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+                <Button mnemonicParsing="false" styleClass="side_panel_button" text="Button" />
+                <Button mnemonicParsing="false" styleClass="side_panel_button" text="Button" />
+                <Button mnemonicParsing="false" styleClass="side_panel_button" text="Button" />
+            </children>
+        </VBox>
+    </left>
+</BorderPane>
