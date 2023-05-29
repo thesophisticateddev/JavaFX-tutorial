@@ -13,15 +13,17 @@
     <center>
         <VBox prefHeight="400.0" prefWidth="506.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="400.0" spacing="30.0">
+                <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="400.0" spacing="30.0">
                     <children>
-                        <Button mnemonicParsing="false" styleClass="header_button" text="ADD TASK" textFill="#151515">
+                        <Button fx:id="addTask" onAction="#createTaskAction" mnemonicParsing="false" prefHeight="46.0" prefWidth="94.0" styleClass="header_button" text="ADD TASK" textFill="#151515">
                             <font>
-                                <Font size="8.0" />
+                                <Font size="13.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="header_button" text="SET REMINDER" />
-                        <Button mnemonicParsing="false" styleClass="header_button" text="SETTINGS" />
+                        <Button mnemonicParsing="false" styleClass="header_button" text="SET REMINDER">
+                     <font>
+                        <Font size="13.0" />
+                     </font></Button>
                     </children>
                     <opaqueInsets>
                         <Insets left="10.0" right="10.0" />

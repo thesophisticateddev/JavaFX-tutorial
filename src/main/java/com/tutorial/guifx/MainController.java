@@ -1,90 +1,89 @@
 package com.tutorial.guifx;
 
-import com.tutorial.guifx.dto.TodoDto;
+import com.tutorial.guifx.views.AddTaskController;
+import com.tutorial.guifx.views.TaskPopUpController;
 import com.tutorial.guifx.services.ApplicationLogo;
-import com.tutorial.guifx.views.TodoCellController;
+import com.tutorial.guifx.services.TodoTaskFactory;
+import com.tutorial.guifx.services.TodoTaskService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.image.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Component
+@Service
 @Slf4j
 public class MainController implements Initializable {
+
     private static final int TOLERANCE_THRESHOLD = 0xCF;
+    public Button addTask;
     @FXML
     public VBox todoList;
-
     @FXML
     public ImageView mainLogo;
 
-//    @FXML
-//    private ListView<TodoDto> todoList;
+    @Autowired
+    private TodoTaskFactory todoTaskFactory;
 
-    public void loadList() {
-        List<TodoDto> data = new ArrayList<>();
-        data.add(new TodoDto(1L, "hello", "this is description"));
-        data.add(new TodoDto(2L, "hello", "this is another description"));
-        data.forEach(eachItem -> {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("todoCell.fxml"));
-            try {
-                VBox box = loader.load();
-                TodoCellController cell = loader.getController();
-                cell.setData(eachItem);
-                todoList.getChildren().add(box);
-            } catch (IOException e) {
-                log.error("Exception occured", e);
-            }
-        });
+//    @Autowired
+//    private TaskPopUpController taskPopUpController;
+
+    @Autowired
+    private AddTaskController addTaskController;
+    @FXML
+    public void createTaskAction(ActionEvent event){
+        try {
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setControllerFactory(applicationContext::getBean);
+            fxmlLoader.setLocation(getClass().getResource("addTaskPopUp.fxml"));
+            fxmlLoader.setController(addTaskController);
+            Parent root = fxmlLoader.load();
+            stage.setTitle("Sample app");
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private Image makeTransparent(Image inputImage) {
-        int W = (int) inputImage.getWidth();
-        int H = (int) inputImage.getHeight();
-        WritableImage outputImage = new WritableImage(W, H);
-        PixelReader reader = inputImage.getPixelReader();
-        PixelWriter writer = outputImage.getPixelWriter();
-        for (int y = 0; y < H; y++) {
-            for (int x = 0; x < W; x++) {
-                int argb = reader.getArgb(x, y);
 
-                int r = (argb >> 16) & 0xFF;
-                int g = (argb >> 8) & 0xFF;
-                int b = argb & 0xFF;
 
-                if (r >= TOLERANCE_THRESHOLD
-                        && g >= TOLERANCE_THRESHOLD
-                        && b >= TOLERANCE_THRESHOLD) {
-                    argb &= 0x00FFFFFF;
-                }
+    public void loadList() {
 
-                writer.setArgb(x, y, argb);
-            }
+        List<VBox> listOfItems = todoTaskFactory.getTasks();
+        if (CollectionUtils.isEmpty(listOfItems)) {
+            VBox box = new VBox();
+            Label label = new Label("No content");
+            box.getChildren().add(label);
+            box.setFillWidth(true);
+            todoList.getChildren().add(box);
+
+        } else {
+            todoList.getChildren().addAll(listOfItems);
         }
-
-        return outputImage;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-//            todoList.setCellFactory(new TodoCellFactory());
-//            todoList.getItems().add(new TodoDto(1L,"hello","this is description"));
-//            Image logoPng = new Image(getClass().getResource("logo.png").openStream());
-
             mainLogo.setImage(ApplicationLogo.getLogo());
-
-
+//            addTask.setOnAction(new TaskPopUpController());
             loadList();
         } catch (Exception e) {
             log.error("Failed to initialize screen", e);

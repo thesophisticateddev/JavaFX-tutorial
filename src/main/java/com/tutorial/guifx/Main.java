@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import java.io.IOException;
@@ -17,12 +18,13 @@ public class Main extends Application {
 
     @Override
     public void init() throws Exception {
-        applicationContext = new SpringApplicationBuilder(ProcessApplication.class).headless(false).run();
+        applicationContext = new SpringApplicationBuilder(ProcessApplication.class).run();
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
+        fxmlLoader.setControllerFactory(aClass -> applicationContext.getBean(aClass));
         Image icon = ApplicationLogo.getLogo();
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         String mainCss = Objects.requireNonNull(Main.class.getResource("main.css")).toExternalForm();
@@ -33,7 +35,9 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-//    public static void main(String[] args) {
-//        launch();
-//    }
+    @Override
+    public void stop() throws Exception {
+        applicationContext.stop();
+    }
+
 }

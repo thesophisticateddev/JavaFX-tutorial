@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="598.0" style="-fx-border-width: 2px; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tutorial.guifx.views.TodoCellController">
+<VBox fx:id="todo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="${todo.parent.width}" style="-fx-border-width: 2px; -fx-border-radius: 10; -fx-border-style: solid inside; -fx-border-color: #7993b0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tutorial.guifx.views.TodoCellController">
    <children>
       <Label id="name" fx:id="name" prefHeight="59.0" prefWidth="598.0" text="Label">
          <font>
@@ -19,7 +17,7 @@
       </Label>
       <HBox spacing="10.0">
          <children>
-            <Label id="description" fx:id="description" alignment="TOP_LEFT" prefHeight="74.0" prefWidth="438.0" text="Label">
+            <Label id="description" fx:id="description" alignment="TOP_LEFT" minWidth="-Infinity" prefHeight="74.0" prefWidth="438.0" text="Label">
                <padding>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
