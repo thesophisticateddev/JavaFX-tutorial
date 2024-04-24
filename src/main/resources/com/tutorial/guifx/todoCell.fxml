@@ -2,10 +2,11 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="todo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="${todo.parent.width}" style="-fx-border-width: 2px; -fx-border-radius: 10; -fx-border-style: solid inside; -fx-border-color: #7993b0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tutorial.guifx.views.TodoCellController">
+<VBox fx:id="todo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="${todo.parent.width}" style="-fx-border-width: 1px; -fx-border-radius: 15; -fx-border-style: solid inside; -fx-border-color: #7993b0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tutorial.guifx.views.TodoCellController">
    <children>
       <Label id="name" fx:id="name" prefHeight="59.0" prefWidth="598.0" text="Label">
          <font>
@@ -22,7 +23,10 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </padding>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 10px;" styleClass="rounded_button_edit" stylesheets="@main.css" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-border-radius: 10px;" styleClass="rounded_button_edit" stylesheets="@main.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></Button>
             <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="rounded_button_delete" stylesheets="@main.css" />
          </children>
          <padding>
